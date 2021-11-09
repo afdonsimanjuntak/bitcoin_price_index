@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="item"
+            type="io.afdon.bitcoinprice.presentation.main.BitcoinDataAdapter.Item" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvLabelTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="Time :"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{item.time}"
+            tools:text="11:00"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/tvLabelTime"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvLabelTime"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvCurrency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@{item.rate}"
+            tools:text="USD 65,000.00"
+            app:layout_constraintStart_toStartOf="@id/tvLabelTime"
+            app:layout_constraintTop_toBottomOf="@id/tvLabelTime"/>
+
+        <TextView
+            android:id="@+id/tvLabelLatitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Latitude :"
+            app:layout_constraintStart_toStartOf="@id/tvCurrency"
+            app:layout_constraintTop_toBottomOf="@id/tvCurrency"/>
+
+        <TextView
+            android:id="@+id/tvLatitude"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{item.latitude}"
+            tools:text="134.0384785"
+            app:layout_constraintStart_toEndOf="@id/tvLabelLatitude"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvLabelLatitude"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvLabelLongitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="16dp"
+            android:text="Longitude :"
+            app:layout_constraintStart_toStartOf="@id/tvLabelLatitude"
+            app:layout_constraintTop_toBottomOf="@id/tvLabelLatitude"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvLongitude"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{item.longitude}"
+            tools:text="134.0384785"
+            app:layout_constraintStart_toEndOf="@id/tvLabelLongitude"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvLabelLongitude"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="#ccc"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
