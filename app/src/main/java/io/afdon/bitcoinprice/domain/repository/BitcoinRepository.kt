@@ -9,4 +9,6 @@ interface BitcoinRepository {
     fun getAll() : Flow<List<BitcoinDataEntity>>
 
     fun requestNewBitcoinData() : Flow<RequestState<Unit>>
+
+    suspend fun removePreviousData()
 }

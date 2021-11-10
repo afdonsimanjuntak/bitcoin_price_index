@@ -17,11 +17,13 @@ import io.afdon.bitcoinprice.domain.entity.BitcoinDataEntity
 import io.afdon.bitcoinprice.domain.entity.RequestState
 import io.afdon.bitcoinprice.domain.usecase.GetBitcoinDataUseCase
 import io.afdon.bitcoinprice.domain.usecase.RefreshBitcoinDataUseCase
+import io.afdon.bitcoinprice.domain.usecase.RemovePreviousDataUseCase
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 class MainViewModel @AssistedInject constructor(
     @Assisted private val savedStateHandle: SavedStateHandle,
+    private val removePreviousDataUseCase : RemovePreviousDataUseCase,
     private val getBitcoinDataUseCase : GetBitcoinDataUseCase,
     private val refreshBitcoinDataUseCase: RefreshBitcoinDataUseCase
 ) : ViewModel() {
@@ -42,6 +44,7 @@ class MainViewModel @AssistedInject constructor(
 
     init {
         viewModelScope.launch {
+            removePreviousDataUseCase()
             data.collect {
                 _chartData.value = getChartData(it)
                 _listData.value = getListData(it)

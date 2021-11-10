@@ -14,4 +14,7 @@ interface BpiDao {
 
     @Query("SELECT * FROM bpi")
     fun getAll(): Flow<List<DbBpiEntity>>
+
+    @Query("DELETE FROM bpi WHERE date = :date")
+    fun removeByDate(date: String)
 }

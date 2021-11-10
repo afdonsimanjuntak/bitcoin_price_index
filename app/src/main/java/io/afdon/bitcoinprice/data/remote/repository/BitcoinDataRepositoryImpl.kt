@@ -54,7 +54,7 @@ class BitcoinDataRepositoryImpl @Inject constructor(
     private suspend fun saveToDb(bpiDto: BitcoinPriceIndexDto?, location: Location) {
         val date = bpiDto?.time?.updated?.let { apiTimeFormat.parse(it) }
         val bpi = DbBpiEntity(
-            getCurrentTime(),
+            convertDate(Calendar.getInstance()),
             date?.let { localTimeFormat.format(it) } ?: "",
             date?.let { calculateTimeDecimal(it) } ?: 0f,
             bpiDto?.bpi?.get("USD")?.rate as String,
@@ -73,9 +73,14 @@ class BitcoinDataRepositoryImpl @Inject constructor(
         return (hour.toFloat() + (minute.toFloat() / 60f))
     }
 
-    private fun getCurrentTime() : String {
-        val calendar = Calendar.getInstance()
+    private fun convertDate(calendar: Calendar) : String {
         val sdf = SimpleDateFormat("EEE, d MMM yyyy", Locale.getDefault())
         return sdf.format(calendar.time)
+    }
+
+    override suspend fun removePreviousData() {
+        val cal = Calendar.getInstance()
+        cal.add(Calendar.DAY_OF_MONTH, -1)
+        bpiDao.removeByDate(convertDate(cal))
     }
 }
