@@ -31,6 +31,11 @@ class MainFragment @Inject constructor(
             recyclerView.adapter = adapter
         }
         lifecycleScope.launchWhenStarted {
+            viewModel.loadingVisibility.collect {
+                binding?.bProgress?.visibility = it
+            }
+        }
+        lifecycleScope.launchWhenStarted {
             viewModel.chartData.collect {
                 it?.let { lineData ->
                     binding?.lineChart?.run {

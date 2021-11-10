@@ -68,7 +68,7 @@ class BitcoinDataRepositoryImpl @Inject constructor(
     private fun calculateTimeDecimal(date: Date) : Float {
         val calendar = Calendar.getInstance()
         calendar.time = date
-        val hour = calendar.get(Calendar.HOUR)
+        val hour = calendar.get(Calendar.HOUR_OF_DAY)
         val minute = calendar.get(Calendar.MINUTE)
         return (hour.toFloat() + (minute.toFloat() / 60f))
     }
