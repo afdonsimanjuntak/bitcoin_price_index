@@ -9,7 +9,8 @@ import javax.inject.Singleton
     SubcomponentModule::class,
     RepositoryModule::class,
     ApiModule::class,
-    RetrofitModule::class
+    RetrofitModule::class,
+    RoomModule::class
 ])
 @Singleton
 interface AppComponent {

@@ -26,12 +26,19 @@ class MainFragment @Inject constructor(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentMainBinding.bind(view).apply {
+            vm = viewModel
             initChart(lineChart)
             recyclerView.adapter = adapter
         }
         lifecycleScope.launchWhenStarted {
             viewModel.chartData.collect {
-                it?.let { lineData -> binding?.lineChart?.data = lineData }
+                it?.let { lineData ->
+                    binding?.lineChart?.run {
+                        data = lineData
+                        notifyDataSetChanged()
+                        invalidate()
+                    }
+                }
             }
         }
         lifecycleScope.launchWhenStarted {
