@@ -1,5 +1,6 @@
 # ON PROGRESS
 TODO:
-- API integration,
-- Get Location
-- Save to room db
+- API integration (DONE),
+- Get Location (DONE)
+- Save to room db (DONE)
+- Create update service
